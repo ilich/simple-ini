@@ -1,6 +1,4 @@
 var SimpleIniTests = (function() {
-    var SimpleIni = require('./../lib/simple-ini.js');
-
     var runBasicTest = function(data, test, options) {
         var totalSections,
             totalProperties,
@@ -574,7 +572,3 @@ var SimpleIniTests = (function() {
         }
     };
 })();
-
-if (typeof module != 'undefined') {
-    module.exports = SimpleIniTests;
-}

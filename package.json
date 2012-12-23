@@ -1,6 +1,6 @@
 {
   "name": "simple-ini",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple INI-parser",
   "main": "./lib/simple-ini.js",
   "homepage": "https://github.com/ilich/simple-ini",
