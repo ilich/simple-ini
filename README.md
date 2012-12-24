@@ -12,7 +12,9 @@ Usage
     var data = [
             '[owner]',
             'name=John Doe',
-            'organization=Acme Widgets Inc.'
+            'organization=Acme Widgets Inc.',
+            'description=This is long long \\',
+            '            long long text.'
         ];
         
     var simpleIni = new SimpleIni(function() { 
@@ -22,6 +24,7 @@ Usage
     if (simpleIni.hasSection('owner')) {
         console.log(simpleIni.get('owner.name'));
         console.log(simpleIni.get('owner.organization'));
+        console.log(simpleIni.get('owner.description'));
     }
     
 Installation
