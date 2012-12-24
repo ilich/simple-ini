@@ -2,6 +2,7 @@ simple-ini
 ==========
 
 simple-ini provides easy way to work with INI-files.
+INI-files format definition has been taken from http://en.wikipedia.org/wiki/INI_file.
 
 Usage
 -----

@@ -1,4 +1,25 @@
 var SimpleIni = (function () {
+    
+    // Define trim, trimLeft and trimRight to support different browsers
+    // e.g. trimLeft is not defined in IE 10.
+    if (typeof String.prototype.trim === 'undefined') {
+        String.prototype.trim = function() {
+            return this.replace(/^\s+|\s+$/g,"");
+        }
+    }
+    
+    if (typeof String.prototype.trimLeft === 'undefined') {
+        String.prototype.trimLeft = function() {
+            return this.replace(/^\s+/,"");
+        }
+    }
+    
+    if (typeof String.prototype.trimRight === 'undefined') {
+        String.prototype.trimRight = function() {
+            return this.replace(/\s+$/,"");
+        }
+    }
+    
     var pick = function (arg, defaultValue) {
         return typeof arg === 'undefined' ? defaultValue : arg;
     }
@@ -282,6 +303,14 @@ var SimpleIni = (function () {
             if (isParameter > -1) {
                 property = baseLine.substr(0, isParameter);
                 value = baseLine.substr(isParameter + 1);
+                
+                // Line continuation: \ and the EOL (end-of-line)
+                while (i < content.length && value.charAt(value.length - 1) === '\\') {
+                    value = value.substr(0, value.length - 1);
+                    baseLine = content[++i].trimLeft();
+                    value += baseLine;
+                }
+                
                 
                 // Process quoted values
                 if (finalOptions.quotedValues) {

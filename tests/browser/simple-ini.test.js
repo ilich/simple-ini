@@ -108,6 +108,40 @@ var SimpleIniTests = (function() {
             test.done();
         },
         
+        'Multiline value': function(test) {
+            var data = [
+                '; last modified 1 April 2001 by John Doe',
+                '[owner]',
+                'name=John Doe',
+                'organization=Acme Widgets Inc.',
+                'definition=This is line 1, \\',
+                '            line 2, \\',
+                '            line 3, \\',
+                '            line 4.',
+                '', 
+                '[database]',
+                '; use IP address in case network name resolution is not working',
+                'server=192.0.2.62',
+                'port=143',
+                'file=payroll.dat',
+                'steps=step 1 \\',
+                '      and step 2'
+            ];
+            
+            var simpleIni = new SimpleIni(function() { 
+                    return data.join('\n'); 
+                });
+               
+            test.equal('John Doe', simpleIni.get('owner.name'));
+            test.equal('Acme Widgets Inc.', simpleIni.get('owner.organization'));
+            test.equal('This is line 1, line 2, line 3, line 4.', simpleIni.get('owner.definition'));
+            test.equal('192.0.2.62', simpleIni.get('database.server'));
+            test.equal('143', simpleIni.get('database.port'));
+            test.equal('payroll.dat', simpleIni.get('database.file'));
+            test.equal('step 1 and step 2', simpleIni.get('database.steps'));
+            test.done();
+        },
+        
         'Create new ini-file': function(test) {
             var data;
             var simpleIni = new SimpleIni();
@@ -466,7 +500,8 @@ var SimpleIniTests = (function() {
             var data = [
                 '; last modified 1 April 2001 by John Doe',
                 '[owner]',
-                'name=\'John Doe\'',
+                'name=\'John \\',
+                '       Doe\'',
                 'organization="Acme Widgets Inc."',
                 '',
                 '[database]',
@@ -572,3 +607,7 @@ var SimpleIniTests = (function() {
         }
     };
 })();
+
+if (typeof module != 'undefined') {
+    module.exports = SimpleIniTests;
+}
