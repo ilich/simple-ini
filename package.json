@@ -11,7 +11,7 @@
   "directories": {
     "test": "tests"
   },
-  "dependencies": {
+  "devDependencies": {
     "nodeunit": "~0.7.4"
   },
   "keywords": [
