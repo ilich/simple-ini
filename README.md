@@ -6,27 +6,27 @@ INI-files format definition has been taken from http://en.wikipedia.org/wiki/INI
 
 Usage
 -----
+```js
+var SimpleIni = require('simple-ini');
 
-    var SimpleIni = require('simple-ini');
+var data = [
+        '[owner]',
+        'name=John Doe',
+        'organization=Acme Widgets Inc.',
+        'description=This is long long \\',
+        '            long long text.'
+    ];
     
-    var data = [
-            '[owner]',
-            'name=John Doe',
-            'organization=Acme Widgets Inc.',
-            'description=This is long long \\',
-            '            long long text.'
-        ];
-        
-    var simpleIni = new SimpleIni(function() { 
-            return data.join('\n');
-        });
-    
-    if (simpleIni.hasSection('owner')) {
-        console.log(simpleIni.get('owner.name'));
-        console.log(simpleIni.get('owner.organization'));
-        console.log(simpleIni.get('owner.description'));
-    }
-    
+var simpleIni = new SimpleIni(function() { 
+        return data.join('\n');
+    });
+
+if (simpleIni.hasSection('owner')) {
+    console.log(simpleIni.get('owner.name'));
+    console.log(simpleIni.get('owner.organization'));
+    console.log(simpleIni.get('owner.description'));
+}
+```    
 Installation
 ------------
 
