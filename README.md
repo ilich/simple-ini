@@ -49,8 +49,8 @@ API Documentation
 * hasProperty(property, section) - checks if the property exists in the section.
   If the section is not specified then it checks if global property exists.
   
-* get(section, property?) - Gets property's value. config might be 'section.property' or 
-  just 'property'. If the config is just a 'property' then the library tries to get
+* get(section, property?) - Gets property's value. section might be 'section.property' or 
+  just 'property'. If the section is just a 'property' then the library tries to get
   the global property.
   Section names containing dots have to be queried by delimiting the section and property part as proper arguments
   
